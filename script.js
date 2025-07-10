@@ -1,5 +1,188 @@
 "use strict";
+const mediaQuery = window.matchMedia("(max-width: 685px)");
 
+const tabSwitching = function (e) {
+  e.preventDefault();
+  const clicked = e.target.closest(".operations__tab");
+  if (!clicked) return;
+  document
+    .querySelectorAll(".operations__tab")
+    .forEach((tab) => tab.classList.remove("operations__tab--active"));
+  clicked.classList.add("operations__tab--active");
+  document
+    .querySelectorAll(".operations__content")
+    .forEach((content) =>
+      content.classList.remove("operations__content--active")
+    );
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+};
+function handleScreenChange(e) {
+  if (e.matches) {
+    document.querySelector(".operations").innerHTML = "";
+    document.querySelector(".operations").innerHTML = `
+    <div class="operations__tab-container">
+          <div class="operations__conatiner">
+            <button class="btn operations__tab operations__tab--1" data-tab="1">
+              <span>01</span>Instant Transfers
+            </button>
+            <div
+              class="operations__content operations__content--1 operations__content--active"
+            >
+              <div class="operations__icon operations__icon--1">
+                <svg>
+                  <use xlink:href="img/icons.svg#icon-upload"></use>
+                </svg>
+              </div>
+              <h5 class="operations__header">
+                Tranfser money to anyone, instantly! No fees, no BS.
+              </h5>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+          <div class="operations__conatiner">
+            <button class="btn operations__tab operations__tab--2" data-tab="2">
+              <span>02</span>Instant Loans
+            </button>
+
+            <div
+              class="operations__content operations__content--2 operations__content--active"
+            >
+              <div class="operations__icon operations__icon--2">
+                <svg>
+                  <use xlink:href="img/icons.svg#icon-home"></use>
+                </svg>
+              </div>
+              <h5 class="operations__header">
+                Buy a home or make your dreams come true, with instant loans.
+              </h5>
+              <p>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+          <div class="operations__conatiner">
+            <button class="btn operations__tab operations__tab--3" data-tab="3">
+              <span>03</span>Instant Closing
+            </button>
+            <div
+              class="operations__content operations__content--3 operations__content--active"
+            >
+              <div class="operations__icon operations__icon--3">
+                <svg>
+                  <use xlink:href="img/icons.svg#icon-user-x"></use>
+                </svg>
+              </div>
+              <h5 class="operations__header">
+                No longer need your account? No problem! Close it instantly.
+              </h5>
+              <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum. Ut enim ad
+                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          </div>
+        </div>`;
+    document
+      .querySelector(".operations__tab-container")
+      .removeEventListener("click", function (e) {
+        tabSwitching(e);
+      });
+    // Disable animations or adjust layout
+  } else {
+    // Enable animations or adjust layout
+    document.querySelector(".operations").innerHTML = "";
+    document.querySelector(".operations").innerHTML = `
+    <div class="operations__tab-container">
+          <button
+            class="btn operations__tab operations__tab--1 operations__tab--active"
+            data-tab="1"
+          >
+            <span>01</span>Instant Transfers
+          </button>
+          <button class="btn operations__tab operations__tab--2" data-tab="2">
+            <span>02</span>Instant Loans
+          </button>
+          <button class="btn operations__tab operations__tab--3" data-tab="3">
+            <span>03</span>Instant Closing
+          </button>
+        </div>
+        <div
+          class="operations__content operations__content--1 operations__content--active"
+        >
+          <div class="operations__icon operations__icon--1">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-upload"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            Tranfser money to anyone, instantly! No fees, no BS.
+          </h5>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+        </div>
+
+        <div class="operations__content operations__content--2">
+          <div class="operations__icon operations__icon--2">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-home"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            Buy a home or make your dreams come true, with instant loans.
+          </h5>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+        </div>
+        <div class="operations__content operations__content--3">
+          <div class="operations__icon operations__icon--3">
+            <svg>
+              <use xlink:href="img/icons.svg#icon-user-x"></use>
+            </svg>
+          </div>
+          <h5 class="operations__header">
+            No longer need your account? No problem! Close it instantly.
+          </h5>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+            officia deserunt mollit anim id est laborum. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+        </div>`;
+
+    document
+      .querySelector(".operations__tab-container")
+      .addEventListener("click", function (e) {
+        tabSwitching(e);
+      });
+  }
+}
+
+// Initial check
+handleScreenChange(mediaQuery);
+
+// Listen for future changes
+mediaQuery.addEventListener("change", handleScreenChange);
 ///////////////////////////////////////
 // Modal window
 
@@ -9,10 +192,10 @@ const btnCloseModal = document.querySelector(".btn--close-modal");
 const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
-const tabs = document.querySelectorAll(".operations__tab");
-const tabsContainer = document.querySelector(".operations__tab-container");
-const tabsContent = document.querySelectorAll(".operations__content");
+
 const nav = document.querySelector(".nav");
+
+//Tabbed Component
 
 const openModal = function (e) {
   e.preventDefault();
@@ -81,40 +264,27 @@ document.querySelector(".nav__links.sidebar").addEventListener("click", (e) => {
   document.querySelector(".nav__links.sidebar").style.visibility = "hidden";
 });
 
-//Tabbed Component
+if (window.matchMedia("(hover: hover)").matches) {
+  // Menu fade animation
+  const fadeAnimation = function (e) {
+    e.preventDefault();
+    if (e.target.classList.contains("nav__link")) {
+      const link = e.target;
+      const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+      const logo = link.closest(".nav").querySelector("img");
 
-tabsContainer.addEventListener("click", function (e) {
-  e.preventDefault();
-  const clicked = e.target.closest(".operations__tab");
-  if (!clicked) return;
-  tabs.forEach((tab) => tab.classList.remove("operations__tab--active"));
-  clicked.classList.add("operations__tab--active");
-  tabsContent.forEach((content) =>
-    content.classList.remove("operations__content--active")
-  );
-  document
-    .querySelector(`.operations__content--${clicked.dataset.tab}`)
-    .classList.add("operations__content--active");
-});
-
-//Menu fade animation
-const fadeAnimation = function (e) {
-  e.preventDefault();
-  if (e.target.classList.contains("nav__link")) {
-    const link = e.target;
-    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
-    const logo = link.closest(".nav").querySelector("img");
-
-    siblings.forEach((el) => {
-      if (el !== link) {
-        el.style.opacity = this;
-      }
+      siblings.forEach((el) => {
+        if (el !== link) {
+          el.style.opacity = this;
+        }
+      });
       logo.style.opacity = this;
-    });
-  }
-};
-nav.addEventListener("mouseover", fadeAnimation.bind(0.5));
-nav.addEventListener("mouseout", fadeAnimation.bind(1));
+    }
+  };
+
+  nav.addEventListener("mouseover", fadeAnimation.bind(0.5));
+  nav.addEventListener("mouseout", fadeAnimation.bind(1));
+}
 
 //Sticky navigation
 
