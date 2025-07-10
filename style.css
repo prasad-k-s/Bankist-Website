@@ -23,14 +23,16 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #444;
   line-height: 1.9;
   background-color: #f3f3f3;
+  overflow-x: hidden;
 }
 
 /* GENERAL ELEMENTS */
@@ -216,7 +218,7 @@ h4 {
 
 .highlight::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -470,7 +472,7 @@ h4 {
 }
 
 .testimonial::before {
-  content: '\201C';
+  content: "\201C";
   position: absolute;
   top: -5.7rem;
   left: -6.8rem;
@@ -671,4 +673,59 @@ h4 {
   color: #bbb;
   font-size: 1.5rem;
   font-weight: 400;
+}
+.sidebar,
+.menu-open {
+  display: none;
+}
+@media (max-width: 1020px) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media (max-width: 857px) {
+  .nav__links {
+    display: none;
+  }
+  .nav__links.sidebar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+    background-color: rgb(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: all 0.3s;
+  }
+  .menu-open {
+    display: block;
+  }
+  .nav__item {
+    margin-left: 0;
+  }
+  .sidebar .nav__link {
+    font-size: 3rem;
+  }
+  .nav {
+    padding: 0 2rem;
+  }
+  .nav.sticky {
+    padding: 0 4rem;
+  }
+
+  .menu-close {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    padding-right: 2rem;
+  }
 }
