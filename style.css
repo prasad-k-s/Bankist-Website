@@ -848,6 +848,13 @@ h4 {
     height: 70%;
     overflow-y: scroll;
   }
+  .modal {
+    padding: 3rem;
+  }
+  .modal__header {
+    font-size: 2.4rem;
+    text-align: center;
+  }
 }
 
 @media (max-width: 505px) {
@@ -859,9 +866,26 @@ h4 {
   .features {
     margin: 0 1rem;
   }
+  .modal {
+    padding: 3rem 1rem;
+  }
 }
 @media (max-width: 415px) {
   .footer__nav {
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 370px) {
+  .modal__header {
+    font-size: 2rem;
+  }
+  .modal__form {
+    grid-template-columns: 1fr;
+  }
+  .modal__form label {
+    grid-column: 1/-1;
+  }
+  .modal__form button {
+    grid-column: 1 / -1;
   }
 }
